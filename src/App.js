@@ -8,10 +8,12 @@ function App() {
 
   const modeChange = () => {
     if (mode === 'light') {
+      document.title = 'Dark Mode';
       setMode("dark");
       document.body.style.backgroundColor = '#35024f'
     } else {
       setMode("light");
+      document.title = 'Light Mode';
       document.body.style.backgroundColor = '#dccfe3'
     }
   }
