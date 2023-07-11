@@ -25,11 +25,11 @@ export default function Navbar(props) {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a className="nav-link" href="/">
-                {props.home} <span className="sr-only">(current)</span>
+                {props.subTitile} <span className="sr-only">(current)</span>
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href={props.reactLink}>
+              <a className="nav-link" href="/">
                 Link
               </a>
             </li>
@@ -42,12 +42,11 @@ export default function Navbar(props) {
 }
 
 Navbar.propTypes = {
-  title: PropTypes.string,
-  home: PropTypes.string.isRequired,
-  reactLink: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  subTitile: PropTypes.string.isRequired  
 }
 
-Navbar.defaultProps  = {
-  title: "duf title",
-  home: "def home"
-} 
+Navbar.defaultProps = {
+  title: "def Title",
+  subTitile: "def SUb Title"
+}
