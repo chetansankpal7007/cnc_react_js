@@ -4,6 +4,8 @@ import List from "./component/List";
 import Navbar from './component/Navbar'
 import Newcompoent from './component/New_compoent'
 import Table from "./component/Table";
+import DaynamicArray from "./component/DaynamicArray"
+
 const link= "https://react.dev/";
 function App() {
   return (
@@ -12,7 +14,10 @@ function App() {
       {/* <Newcompoent/> */}
       {/* <Condition/> */}
       {/* <List></List> */}
-      <Table></Table>
+      {/* <Table></Table> */}
+      <DaynamicArray></DaynamicArray>
+      
+      
     </>
   );
 }

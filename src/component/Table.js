@@ -8,45 +8,51 @@ const std = [
     {nameItem: 'mahesh', conatctItem: '4556767678'},
     {nameItem: 'Rahul 2', conatctItem: '67867833'},
 ]
+
 function StdTab (props)  {
 const deleteItem = (index) => {
     std.splice(index, 1);
-    console.log(std);
+    this.setStdData(std);
+    
 }
 
 return <tr >
             <td >{props.data.nameItem }</td>
             <td>{props.data.conatctItem}</td>  
-            <td><input type='button' value='Delete' onClick={deleteItem(props.itemIndex)}></input></td>  
+            <td><input type='button' value='Delete' onClick={()=> deleteItem(props.itemIndex)}></input></td>  
             </tr>
 }
 
 export default function Table() {
 
 
+const [stdData, setStdData] = useState([]);
  const [name, setName] = useState('');
  const [contact, setContact] = useState('');
 //  const [std, setStd] = useState([{nameItem: 'Rahul', conatctItem: '877777799'}]);
  
  
-//  const save= () => {
-//     let tempStd= std;
-//     let obj= {nameItem: name, conatctItem: contact}
-//     tempStd.push(obj);
-//     setStd(tempStd);
-//     console.log(std);
-//  }
+ const save= () => {
+    let obj= {nameItem: name, conatctItem: contact}
+    std.push(obj);
+    setTimeout(() => {        
+        setStdData(std);
+    }, 100);
+    console.log(std);
+    console.log(stdData);
+ }
 
   return (
     <div className='m-5'>
         <form >
             <input type="text" id="name" onChange={(e)=> setName(e.target.value)} placeholder="Name"/><br/><br/>
             <input type="text" id="contact" onChange={(e)=> setContact(e.target.value)} placeholder="Conatact No"/><br/><br/>
-            <input type='button' value='save'></input>
+            <input type='button' onClick={save} value='save'></input>
         </form>
 
       <h1>Table Component</h1>
       <table>
+      <thead>
         <tr>
             <td>
                 Name
@@ -58,8 +64,15 @@ export default function Table() {
                 Delete
             </td>
         </tr>
-
-         {std.map((stdItem, index) => <StdTab data={stdItem} itemIndex={index}></StdTab>)}
+        </thead>
+        <tbody>
+         {stdData.map((stdItem, index) => 
+         <tr>
+            <td>{index}</td>
+            <td>{index}</td>
+            <td>{index}</td>
+         </tr>)}
+         </tbody>
       </table>
     </div>
   )
