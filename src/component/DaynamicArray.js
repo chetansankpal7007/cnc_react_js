@@ -34,7 +34,7 @@ export default function DaynamicArray() {
         <form >
             <input type="text" id="name" value={name} onChange={(e) =>setName(e.target.value) } placeholder="Name"/><br/><br/>
             <input type="text" id="contact" value={contact} onChange={(e)=> setConatc(e.target.value)} placeholder="Conatact No"/><br/><br/>
-            <input type='button' onClick={save}  value='save'></input>
+            <input type='button' className='bttn' onClick={save}  value='save'></input>
         </form>
         <table>
             <thead>

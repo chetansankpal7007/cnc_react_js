@@ -5,6 +5,7 @@ import Navbar from './component/Navbar'
 import Newcompoent from './component/New_compoent'
 import Table from "./component/Table";
 import DaynamicArray from "./component/DaynamicArray"
+import FormValidetio from "./component/FormValidetio";
 
 const link= "https://react.dev/";
 function App() {
@@ -15,8 +16,8 @@ function App() {
       {/* <Condition/> */}
       {/* <List></List> */}
       {/* <Table></Table> */}
-      <DaynamicArray></DaynamicArray>
-      
+      {/* <DaynamicArray></DaynamicArray> */}
+      <FormValidetio></FormValidetio>
       
     </>
   );
