@@ -6,6 +6,7 @@ import Newcompoent from './component/New_compoent'
 import Table from "./component/Table";
 import DaynamicArray from "./component/DaynamicArray"
 import FormValidetio from "./component/FormValidetio";
+import Lifecycle from "./component/Lifecycle";
 
 const link= "https://react.dev/";
 function App() {
@@ -17,7 +18,8 @@ function App() {
       {/* <List></List> */}
       {/* <Table></Table> */}
       {/* <DaynamicArray></DaynamicArray> */}
-      <FormValidetio></FormValidetio>
+      {/*  <FormValidetio></FormValidetio> */}
+      <Lifecycle></Lifecycle>
       
     </>
   );
