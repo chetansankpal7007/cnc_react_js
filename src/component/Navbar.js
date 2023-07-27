@@ -10,6 +10,9 @@ import {
 } from "react-router-dom";
 
 export default function Navbar(props) {
+  const myId = 87;
+  const fName = "Chetan";
+  const lName = "Sankpal"
   return (
     <>
     <Router>
@@ -32,12 +35,12 @@ export default function Navbar(props) {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
-                  <Link className="nav-link" to="abuoth-us">
+                  <Link className="nav-link" to={`abuoth-us/${myId}`}>
                     Abuoth Us
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="contact_us">
+                  <Link className="nav-link" to={`contact_us/${fName}/${lName}`}>
                     Contact US
                   </Link>
                 </li>
@@ -50,8 +53,8 @@ export default function Navbar(props) {
         </nav>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/abuoth-us" element={<AbuthUs/>}></Route>
-          <Route path="/contact_us" element={<ContactUs/>}></Route>
+          <Route path="/abuoth-us/:id" element={<AbuthUs/>}></Route>
+          <Route path="/contact_us/:fname/:lname" element={<ContactUs/>}></Route>
         </Routes>
          
       </Router>
