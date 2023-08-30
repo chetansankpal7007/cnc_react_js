@@ -1,25 +1,17 @@
-import { useState } from "react";
-import "./App_A.css";
-import Navbar from './component/Navbar'
-const link= "https://react.dev/";
+import { useEffect, useState } from "react";
 function App() {
+  const [num, setNum] = useState(0);
+  const [num1, setNum1] = useState(0);
 
-  const [mode, setMode] = useState ('light');
+  useEffect(()=>{
+    alert("Number Change")
+  }, [num])
 
-  const modeChange = () => {
-    if (mode === 'light') {
-      document.title = 'Dark Mode';
-      setMode("dark");
-      document.body.style.backgroundColor = '#35024f'
-    } else {
-      setMode("light");
-      document.title = 'Light Mode';
-      document.body.style.backgroundColor = '#dccfe3'
-    }
-  }
   return (
     <>
-      <Navbar title="React Class -2" mode={mode} modeShwich={modeChange} reactLink={link}/>
+    <button onClick={()=> setNum(num+1)}>Clck Me - {num}</button>
+    <br></br><br></br><hr></hr>
+    <button onClick={()=> setNum1(num1+1)}>Clck Me 1 - {num1}</button>
     </>
   );
 }
