@@ -1,33 +1,25 @@
-import { useReducer } from "react";
+import { useEffect } from "react";
 import "./App_A.css";
 
 function App() {
-  // const [num, setNum] = useState(0);
+  const API = "http://localhost:8090/product/product-list";
 
-                     // 1
-  const reducer = (state, action) => {
-    console.log(state, action);
-    if(action == "Increment") {
-      state = state +1;
-      //1
-    } else {
-              //1 -1
-      state = state - 1;
-    }
-            //0
-    return state;
+  const fetchData = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data);
   }
 
 
-  //num = 1
-  const [num, dispatch] = useReducer(reducer, 0) 
+  useEffect(()=> {
+    fetchData(API);
+  }, []);
+
+
+
   return (
     <div className="center">
-      <label className="text">{num}</label>
-      <br></br>
-      <button onClick={()=> dispatch("Increment")}>Increment</button>
-      <br></br><br></br><hr></hr>
-      <button onClick={()=> dispatch("Dicrement")}>Dicrement</button>
+      <h2>Welcome To Product List</h2>
     </div>
   );
 }
