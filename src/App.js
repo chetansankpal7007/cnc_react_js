@@ -1,18 +1,34 @@
-import { useEffect, useState } from "react";
+import { useReducer } from "react";
+import "./App_A.css";
+
 function App() {
-  const [num, setNum] = useState(0);
-  const [num1, setNum1] = useState(0);
+  // const [num, setNum] = useState(0);
 
-  useEffect(()=>{
-    alert("Number Change")
-  }, [num])
+                     // 1
+  const reducer = (state, action) => {
+    console.log(state, action);
+    if(action == "Increment") {
+      state = state +1;
+      //1
+    } else {
+              //1 -1
+      state = state - 1;
+    }
+            //0
+    return state;
+  }
 
+
+  //num = 1
+  const [num, dispatch] = useReducer(reducer, 0) 
   return (
-    <>
-    <button onClick={()=> setNum(num+1)}>Clck Me - {num}</button>
-    <br></br><br></br><hr></hr>
-    <button onClick={()=> setNum1(num1+1)}>Clck Me 1 - {num1}</button>
-    </>
+    <div className="center">
+      <label className="text">{num}</label>
+      <br></br>
+      <button onClick={()=> dispatch("Increment")}>Increment</button>
+      <br></br><br></br><hr></hr>
+      <button onClick={()=> dispatch("Dicrement")}>Dicrement</button>
+    </div>
   );
 }
 
