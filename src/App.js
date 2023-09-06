@@ -11,7 +11,7 @@ function App() {
 
 
   const fetchData =  () => {
-
+    console.log("List api call");
     fetch(API).then(res=>{
       console.log(res);
 
@@ -31,14 +31,24 @@ function App() {
     } 
     console.log(playLoad);
    let res = await fetch(ADDAPI, {
-      method: "POST",
-      body: JSON.stringify(playLoad)
-    }) 
+                method: "POST",
+                body: JSON.stringify(playLoad),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                }
+              }
+            ) 
 
     let resJson = await res.json();
+    fetchData();
     console.log(resJson);
+    setPName('');
+    setPrice('');
+    setQty('');
+  }
 
-
+  const deleteProduct = (id) => {
+    console.log(id)
   }
 
 
@@ -85,20 +95,28 @@ function App() {
       <div >
         {productList.length>0 && (
         <table>
-          <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
-          </tr>
+          <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>              
+                <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
           {productList?.map(product => {
             return (
-              <tr>
-                <th>{product.name}</th>
-                <th>{product.price}</th>
-                <th>{product.quantity}</th>
+              <tr  key={product._id}>
+                <td>{product._id}</td>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td>{product.quantity}</td>
+                <td><button onClick={deleteProduct((e)=>{deleteProduct(product._id)})}>Delete</button></td>
              </tr>
             )
-          })}
+          } )}
+          </tbody>
         </table>
         )}
       </div>
