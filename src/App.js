@@ -4,6 +4,7 @@ import "./App_A.css";
 function App() {
   const API = "http://localhost:8090/product/product-list";
   const ADDAPI = "http://localhost:8090/product/product-create";
+  const DELETEAPI = "http://localhost:8090/product/delete-product/"
   const  [productList, setProduct] = useState([]);
   const  [prodName, setPName] = useState('');
   const  [qty, setQty] = useState();
@@ -47,8 +48,20 @@ function App() {
     setQty('');
   }
 
-  const deleteProduct = (id) => {
-    console.log(id)
+  const deleteProduct = async (id) => {
+   let res = await  fetch(DELETEAPI+id, {
+      method: "DELETE"
+    });
+    let resJson = await res.json();
+    console.log(resJson);
+    fetchData();
+  }
+
+  const updateProduct = (product) =>{
+    console.log(product);
+    setPName(product.name);
+    setPrice(product.price);
+    setQty(product.quantity)
   }
 
 
@@ -101,7 +114,8 @@ function App() {
                 <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>              
-                <th>Delete</th>
+                <th>Delete</th>         
+                <th>Update</th>
             </tr>
           </thead>
           <tbody>
@@ -112,7 +126,8 @@ function App() {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>{product.quantity}</td>
-                <td><button onClick={deleteProduct((e)=>{deleteProduct(product._id)})}>Delete</button></td>
+                <td><button onClick={()=>{deleteProduct(product._id)}}>Delete</button></td>
+                <td><button onClick={()=>{updateProduct (product)}}>Update</button></td>
              </tr>
             )
           } )}
