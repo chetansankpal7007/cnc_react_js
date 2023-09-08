@@ -4,11 +4,13 @@ import "./App_A.css";
 function App() {
   const API = "http://localhost:8090/product/product-list";
   const ADDAPI = "http://localhost:8090/product/product-create";
-  const DELETEAPI = "http://localhost:8090/product/delete-product/"
+  const DELETEAPI = "http://localhost:8090/product/delete-product/";
+  const UPDATE = "http://localhost:8090/product/update-product";
   const  [productList, setProduct] = useState([]);
   const  [prodName, setPName] = useState('');
   const  [qty, setQty] = useState();
-  const  [price, setPrice] = useState();
+  const  [price, setPrice] = useState();  
+  const  [id, setId] = useState('');
 
 
   const fetchData =  () => {
@@ -25,27 +27,50 @@ function App() {
   } 
 
   const addProduct  = async () => {
-    let playLoad = {
-      name: prodName,
-      quantity: qty,
-      price: price
-    } 
-    console.log(playLoad);
-   let res = await fetch(ADDAPI, {
-                method: "POST",
-                body: JSON.stringify(playLoad),
-                headers: {
-                  'Content-type': 'application/json; charset=UTF-8',
+    if(id=='') {
+      let playLoad = {
+        name: prodName,
+        quantity: qty,
+        price: price
+      } 
+      console.log(playLoad);
+     let res = await fetch(ADDAPI, {
+                  method: "POST",
+                  body: JSON.stringify(playLoad),
+                  headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                  }
                 }
-              }
-            ) 
+              ) 
+  
+      let resJson = await res.json();
+      console.log(resJson);      
+      alert("Product Added");
+    } else {
+      let playLoad = {
+        name: prodName,
+        quantity: qty,
+        price: price,
+        _id: id
+      }
 
-    let resJson = await res.json();
+      let res = await fetch(UPDATE, {
+                  method: "POST",
+                  body: JSON.stringify(playLoad),
+                  headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                  }
+                })
+
+      let resJson = await res.json();
+      alert("Product Updated");
+    }
+    
     fetchData();
-    console.log(resJson);
     setPName('');
     setPrice('');
     setQty('');
+    setId('');
   }
 
   const deleteProduct = async (id) => {
@@ -61,7 +86,8 @@ function App() {
     console.log(product);
     setPName(product.name);
     setPrice(product.price);
-    setQty(product.quantity)
+    setQty(product.quantity);    
+    setId(product._id)
   }
 
 
@@ -97,7 +123,7 @@ function App() {
           </div>
           <br/>
           <div className="row">
-            <button onClick={addProduct}>Submit</button>
+            <button onClick={addProduct}>{id=='' ? 'Add' : 'Update'}</button>
           </div>
         </div>
       </div>
