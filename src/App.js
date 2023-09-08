@@ -22,9 +22,20 @@ function App() {
     }).then((data)=>{
       setProduct(data);
       console.log(data);
-    })
-    
+    })    
   } 
+
+  const refeshList = () => {
+    setInterval(() => {
+      fetchData();
+    }, 2000);
+  }
+
+  useEffect(()=>{
+    refeshList();
+  }, []);
+
+
 
   const addProduct  = async () => {
     if(id=='') {
